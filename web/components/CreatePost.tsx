@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { postJSON } from '@/lib/api';
+import { postJSON } from '../lib/api';
 import useSWR from 'swr';
-import { api, fetcherJSON } from '@/lib/api';
+import { api, fetcherJSON } from '../lib/api';
 
 export default function CreatePost({ onCreated }: { onCreated?: () => void }) {
   const { data: me } = useSWR(api('/me'), fetcherJSON);

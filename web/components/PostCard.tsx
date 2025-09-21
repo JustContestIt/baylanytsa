@@ -1,6 +1,6 @@
 'use client';
 
-import { postJSON } from '@/lib/api';
+import { postJSON } from '../lib/api';
 import { useState } from 'react';
 import clsx from 'clsx';
 

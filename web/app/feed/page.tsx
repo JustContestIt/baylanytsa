@@ -2,8 +2,8 @@
 
 import useSWRInfinite from 'swr/infinite';
 import { useState } from 'react';
-import { fetcherJSON, api } from '@/lib/api';
-import PostCard from '@/components/PostCard';
+import { fetcherJSON, api } from '../../lib/api';
+import PostCard from  '../../components/PostCard'; ;
 import Skeleton from '../../components/Skeleton';
 import CreatePost from '../../components/CreatePost';
 

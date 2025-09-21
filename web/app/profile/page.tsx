@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { fetcherJSON, api, postJSON } from '@/lib/api';
+import { fetcherJSON, api, postJSON } from '../../lib/api';
 import CreatePost from '../../components/CreatePost';
 
 export default function ProfilePage() {

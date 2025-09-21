@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { fetcherJSON, api } from '@/lib/api';
+import { fetcherJSON, api } from '../../lib/api';
 import useSocket from '../../hooks/useSocket';
 import NotificationsList from '../../components/NotificationsList';
 

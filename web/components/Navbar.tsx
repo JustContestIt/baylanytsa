@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import useSWR from 'swr';
-import { api, fetcherJSON } from '@/lib/api';
+import { api, fetcherJSON } from '../lib/api';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/navbar';
 import { Button } from '@heroui/button';
 
