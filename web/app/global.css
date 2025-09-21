@@ -1,0 +1,99 @@
+/* web/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 107 114 128;
+  --card: 249 250 251;
+}
+
+.dark {
+  --bg: 17 24 39;
+  --fg: 229 231 235;
+  --muted: 156 163 175;
+  --card: 31 41 55;
+}
+
+html, body { height: 100%; }
+body { background-color: rgb(var(--bg)); color: rgb(var(--fg)); }
+
+.container {
+  max-width: 42rem; /* max-w-2xl */
+  margin-left: auto; /* mx-auto */
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+.card {
+  background-color: rgb(var(--card));
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  border: 1px solid #e5e7eb; /* border border-gray-200 */
+  padding: 1rem; /* p-4 */
+}
+.dark .card {
+  border-color: #374151; /* dark:border-gray-700 */
+}
+
+.btn {
+	display: inline-block;	
+	box-sizing: border-box;
+	padding: 0 15px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: none;  
+	border-radius: 4px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	color: #fff;
+	background-color: #1a73e8;
+	position: relative;
+	overflow:hidden;
+	vertical-align: top;
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation; 
+	z-index: 1;
+}
+.btn span{
+	position: absolute;
+	background: #fff;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	pointer-events: none;
+	animation: btn_ripples 0.6s linear infinite;
+}
+@keyframes btn_ripples {
+	0% {
+		width: 0px;
+		height: 0px;
+		opacity: 0.5;
+	}
+	100% {
+		width: 1000px;
+		height: 1000px;
+		opacity: 0;
+	}
+}
+.btn:hover {
+	box-shadow: 0 1px 2px 0 rgb(26 115 232 / 45%), 0 1px 3px 1px rgb(26 115 232 / 30%);
+	background-color: #297be6;
+}
+.btn:active {
+	box-shadow: 0 1px 2px 0 rgb(26 115 232 / 45%), 0 2px 6px 2px rgb(26 115 232 / 30%);
+	background-color: #1a73e8 !important;
+}
+.btn:focus-visible {
+	box-shadow: 0 0 0 3px lightskyblue;
+}
+.btn:disabled {
+	pointer-events: none;
+	opacity: 0.65;
+}
