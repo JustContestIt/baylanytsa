@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum NotificationType {
+  LIKE
+  COMMENT
+}
+
+model User {
+  id                 String          @id @default(cuid())
+  username           String          @unique
+  displayName        String?
+  bio                String?
+  createdAt          DateTime        @default(now())
+  posts              Post[]
+  likes              Like[]
+  comments           Comment[]
+  followers          Follow[]        @relation("followers")
+  following          Follow[]        @relation("following")
+  notifications      Notification[]  @relation("userNotifications")
+  actedNotifications Notification[]  @relation("actorNotifications")
+}
+
+model Post {
+  id            String         @id @default(cuid())
+  content       String
+  createdAt     DateTime       @default(now())
+  authorId      String
+  author        User           @relation(fields: [authorId], references: [id])
+  likes         Like[]
+  comments      Comment[]
+  notifications Notification[]
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  authorId  String
+  postId    String
+  author    User     @relation(fields: [authorId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+}
+
+model Follow {
+  id           String   @id @default(cuid())
+  followerId   String
+  followingId  String
+  createdAt    DateTime @default(now())
+  follower     User     @relation("following", fields: [followerId], references: [id])
+  following    User     @relation("followers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
+}
+
+model Notification {
+  id        String            @id @default(cuid())
+  userId    String
+  actorId   String
+  postId    String?
+  type      NotificationType
+  read      Boolean           @default(false)
+  createdAt DateTime          @default(now())
+  user      User              @relation("userNotifications", fields: [userId], references: [id])
+  actor     User              @relation("actorNotifications", fields: [actorId], references: [id])
+  post      Post?             @relation(fields: [postId], references: [id])
+}
